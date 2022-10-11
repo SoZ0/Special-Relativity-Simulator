@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.util.Hashtable;
 import java.util.function.LongSupplier;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
@@ -19,17 +20,24 @@ public class ControlWindow extends Window {
     public static LongSupplier simulationSpeed;
     public static boolean paused = false;
     public static boolean train = false;
+    public static boolean move = false;    
+    public static boolean ball = false;
+    public static boolean light = false;
+
 
     public ControlWindow() {
-        super("Controls", new Dimension(275,125));
+        super("Controls", new Dimension(255,250));
         
     }
 
     @Override
     public void construct() {
-        getContentPane().setLayout(new FlowLayout());
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         getContentPane().add(buildSilder());
         getContentPane().add(buildPausePlay());
+        getContentPane().add(buildShowTrain());
+        getContentPane().add(buildShowBall());
+        getContentPane().add(buildShowLight());
         getContentPane().add(buildTrainRef());
         build();
     }
@@ -61,8 +69,26 @@ public class ControlWindow extends Window {
     }
 
     private static JCheckBox buildTrainRef(){
-        JCheckBox comp = new JCheckBox("Stationary Frame of Reference: Train");
+        JCheckBox comp = new JCheckBox("Frame of Reference: Still");
         comp.addActionListener(e -> train = comp.isSelected());
+        return comp;
+    }
+
+    private static JCheckBox buildShowBall(){
+        JCheckBox comp = new JCheckBox("Show: Ball");
+        comp.addActionListener(e -> ball = comp.isSelected());
+        return comp;
+    }
+
+    private static JCheckBox buildShowTrain(){
+        JCheckBox comp = new JCheckBox("Show: Train");
+        comp.addActionListener(e -> move = comp.isSelected());
+        return comp;
+    }
+
+    private static JCheckBox buildShowLight(){
+        JCheckBox comp = new JCheckBox("Show: Light");
+        comp.addActionListener(e -> light = comp.isSelected());
         return comp;
     }
 

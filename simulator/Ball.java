@@ -40,7 +40,7 @@ public class Ball implements SimObject {
     public void draw(Graphics2D graphics) {
         
 
-        
+     if(ControlWindow.ball)  { 
         graphics.setColor(Color.white);
         graphics.fillOval(x, y, 10, 10);
         graphics.setColor(Color.green);
@@ -54,7 +54,7 @@ public class Ball implements SimObject {
             }
         }
 
-        
+        }
         
         
         

@@ -3,6 +3,8 @@ package simulator;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import gui.windows.ControlWindow;
+
 public class LightEmitter implements SimObject{
 
     private int startX, startY, x, y, centerX, centerY;
@@ -21,8 +23,8 @@ public class LightEmitter implements SimObject{
 
     @Override
     public void calculate(double interpolation) {
-        if(obX > 1500){
-            obX = -200;
+        if(obX > 1200){
+            obX = -350;
             triggered = false;
         }else{
             obX = (int) (obX + (obRate * interpolation));
@@ -47,9 +49,11 @@ public class LightEmitter implements SimObject{
     @Override
     public void draw(Graphics2D graphics) {
         graphics.setColor(Color.white);
-        graphics.drawOval(x, y, rad, rad);
-
-        graphics.fillOval(centerX, centerY, 5, 5);
+        if(ControlWindow.light){
+            graphics.drawOval(x, y, rad, rad);
+            graphics.fillOval(centerX, centerY, 5, 5);
+        }
+        
     }
     
 }

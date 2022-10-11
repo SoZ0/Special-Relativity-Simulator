@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import gui.windows.ControlWindow;
+
 
 public class Observer implements SimObject{
     private Image image;
@@ -34,9 +36,12 @@ public class Observer implements SimObject{
     @Override
     public void draw(Graphics2D graphics) {
         graphics.setColor(Color.white);
-        if (Math.abs(moveX) > 0) graphics.drawRect(posX-125, posY, 300, 150);
 
-        graphics.drawImage(image, posX, posY, null);
+        
+        if (Math.abs(moveX) > 0 && ControlWindow.move) {
+            graphics.drawRect(posX-125, posY, 300, 150);
+            graphics.drawImage(image, posX, posY, null);
+        }else if(moveX == 0) graphics.drawImage(image, posX, posY, null);
     }
 
 }
